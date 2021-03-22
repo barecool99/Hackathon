@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Team Imposter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script> 
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/adapters/standalone-framework.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <link href = "{{ url_for('static', filename='css/style.css') }}" type = "text/css" rel = "stylesheet"/>
+</head>
+
+<body>
+    <ul class="navbar">  
+        <li class="nav-label"><a  href="{{ url_for('index') }}#about">About</a></li>
+        <li class="nav-label"><a  href="{{ url_for('index') }}#findings">Findings</a></li>
+        <li class="nav-label"><a  href="{{ url_for('index') }}#results">Results</a></li>
+        <li class="nav-label"><a  href="{{ url_for('diagnose') }}">Diagnosis</a></li>
+
+        {% if current_user.is_anonymous %}
+          <li class="nav-label"><a  href="{{ url_for('login') }}">Login</a></li>
+          <li class="nav-label"><a  href="{{ url_for('register') }}">Register</a></li>
+
+        {% else %}
+          <li class="nav-label"><a  href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
+    </ul>
+
+    <div class="header">
+        <p>Preventing Breast Cancer</p>
+    </div>
+
+    <div class="about-us" id="about">
+       
+    <div class="row">
+        <div class="col-4">
+
+          <h1>Register</h1>
+          <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}<br>
+                {% for error in form.username.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.email.label }}<br>
+                {{ form.email(size=64) }}<br>
+                {% for error in form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}<br>
+                {% for error in form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.password2.label }}<br>
+                {{ form.password2(size=32) }}<br>
+                {% for error in form.password2.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit() }}</p>
+          </form>
+
+        </div>
+    </div>
+</body>
+</html>

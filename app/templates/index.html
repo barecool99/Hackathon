@@ -18,10 +18,20 @@
  
     <ul class="navbar">  
         
-        <li class="nav-label"><a  href="#about">About</a></li>
-        <li class="nav-label"><a  href="#findings">Findings</a></li>
-        <li class="nav-label"><a  href="#results">Results</a></li>
+        <li class="nav-label"><a  href="{{ url_for('index') }}#about">About</a></li>
+        <li class="nav-label"><a  href="{{ url_for('index') }}#findings">Findings</a></li>
+        <li class="nav-label"><a  href="{{ url_for('index') }}#results">Results</a></li>
         <li class="nav-label"><a  href="{{ url_for('diagnose') }}">Diagnosis</a></li>
+
+        {% if current_user.is_anonymous %}
+          <li class="nav-label"><a  href="{{ url_for('login') }}">Login</a></li>
+          <li class="nav-label"><a  href="{{ url_for('register') }}">Register</a></li>
+
+        {% else %}
+          <li class="nav-label"><a  href="{{ url_for('logout') }}">Logout</a></li>
+        {% endif %}
+
+        <li class="nav-label">{{ current_user }}</li>
       </ul>
 
       <div class="header">
@@ -46,7 +56,7 @@
       <p>Our algorithm looks at a dataset of cancer records with symptoms and our ML algo classifies whether the cancer is Benin or Malignant </p>
     </div>
     <div class="col">
-      <img class="about-img shadow-sm" src="{{ url_for('static', filename = 'images/ribbon2.jpg') }}" alt="Ribbon" style="width:100%">
+      <img class="about-img shadow-sm" src="{{ url_for('static', filename = 'images/ribbons2.jpg') }}" alt="Ribbon" style="width:100%">
       <p>Our dataset is from Kaggle which allows users to find, publish and build datasets. Our dataset is from Breast Cancer Wisconsin. </p>
     </div>
   </div>
@@ -71,7 +81,7 @@
 
           <div class="col">
             <div class="flip">
-              <div class="front" style="background-image: url({{ url_for('static',filename = '/images/hearts.jpg')}});">
+              <div class="front" style="background-image: url({{ url_for('static',filename = '/images/hearts.jpg') }});">
                  <h1 class="text-shadow front-text"></hi>
               </div>
               <div class="back">
@@ -83,7 +93,7 @@
 
      <div class="col">
       <div class="flip">
-        <div class="front" style="background-image: url({{ url_for('static',filename = '/images/flowers4.jpg')}});">
+        <div class="front" style="background-image: url({{ url_for('static',filename = '/images/flowers4.jpg') }});">
            <h1 class="text-shadow front-text"></hi>
         </div>
         <div class="back">
@@ -95,7 +105,7 @@
 
           <div class="col">
             <div class="flip">
-              <div class="front"style="background-image: url({{ url_for('static',filename = '/images/flower2.jpg')}});">
+              <div class="front"style="background-image: url({{ url_for('static',filename = '/images/flower2.jpg') }});">
                  <h1 class="text-shadow front-text"></hi>
               </div>
               <div class="back">
@@ -234,6 +244,18 @@
     </div>
   </footer>
 </div>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+        var messages = {{ messages | safe }};
+        for (var i=0; i<messages.length; i++) 
+        {
+            alert(messages[i]);
+        }
+    </script>
+  {% endif %}
+{% endwith %}
    
        <script src="{{ url_for('static', filename='index.js') }}"></script>
        <script src="{{ url_for('static', filename='highcharts.js') }}"></script>

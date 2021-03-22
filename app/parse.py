@@ -96,42 +96,67 @@ class GenerateGraphs():
 
 class MachineLearning():
     def getMLAccuracy():
-            data = CleanDataset.clean_dataset()
+        data = CleanDataset.clean_dataset()
 
-            X = data.iloc[:,2:32].values
-            Y = data.iloc[:,1].values
+        X = data.iloc[:,2:32].values
+        Y = data.iloc[:,1].values
 
-            X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.33,random_state=42)
+        X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.33,random_state=42)
 
-            # we need to hide diagnosis so our ML model can work
-            X=data.drop('diagnosis', axis=1)
-            # predict diagnosis
-            Y=data['diagnosis'] 
-
-
-            dtree= DecisionTreeClassifier() # instantiate 
-            dtree.fit(X_train, Y_train) #fit 
-            predictions=dtree.predict(X_test)#predict
+        # we need to hide diagnosis so our ML model can work
+        X=data.drop('diagnosis', axis=1)
+        # predict diagnosis
+        Y=data['diagnosis'] 
 
 
-            #87-90% accuracy which is very good.
-            # print(confusion_matrix(Y_test, predictions))
-            # print(classification_report(Y_test, predictions))
+        dtree= DecisionTreeClassifier() # instantiate 
+        dtree.fit(X_train, Y_train) #fit 
+        predictions=dtree.predict(X_test)#predict
 
 
-            #lets see how the results above compare to random forest classifier
-            rfc=RandomForestClassifier(n_estimators=200)
-            rfc.fit(X_train,Y_train)
+        #87-90% accuracy which is very good.
+        # print(confusion_matrix(Y_test, predictions))
+        # print(classification_report(Y_test, predictions))
 
 
-            rfc_pred=rfc.predict(X_test)
-
-            # print(confusion_matrix(Y_test, rfc_pred))
-            # print(classification_report(Y_test, rfc_pred))
-
-            # 94% accuracy wow
-            report = classification_report(Y_test, rfc_pred, output_dict = True)
-            dataFrame = pd.DataFrame(report).transpose()
+        #lets see how the results above compare to random forest classifier
+        rfc=RandomForestClassifier(n_estimators=200)
+        rfc.fit(X_train,Y_train)
 
 
-            return dataFrame
+        rfc_pred=rfc.predict(X_test)
+
+        # print(confusion_matrix(Y_test, rfc_pred))
+        # print(classification_report(Y_test, rfc_pred))
+
+        # 94% accuracy wow
+        report = classification_report(Y_test, rfc_pred, output_dict = True)
+        dataFrame = pd.DataFrame(report).transpose()
+
+
+        return dataFrame
+
+
+    # Predicts the type of cancer based of specified params in dataset
+    def returnPrediction(dataset):
+        # Begins with training the algo on the hackathonDataset.csv like above
+        data = CleanDataset.clean_dataset()
+
+        X = data.iloc[:,2:32].values
+        Y = data.iloc[:,1].values
+
+        X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.33, random_state = 42)
+
+        X = data.drop('diagnosis', axis = 1)
+        Y = data['diagnosis']
+
+        rfc = RandomForestClassifier(n_estimators = 200)
+        rfc.fit(X_train, Y_train)
+
+        # Creates the prediction based off the model generated
+        # from the above algo -> magic
+        prediction = rfc.predict(dataset)
+
+        print ("Prediction: " + str(prediction[0]))
+
+        return prediction
