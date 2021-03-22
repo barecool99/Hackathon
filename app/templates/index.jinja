@@ -1,0 +1,55 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+
+    <div id = "container">
+        <div class = "row">
+        <!-- We could add info about our team here? just sorta fill the space? -->
+            <p>
+                Descriptiong of what we are doing as a team
+            </p>
+            <p>
+                Main goals
+            </p>
+            <p>
+                Language/libraries used to create Project
+            </p>
+        <div>
+        <div class = "row">
+            <div class = "column">
+                <img 
+                    src = "{{ url_1 }}" 
+                    alt = "Chart" 
+                    height = "auto" 
+                    width = "100%" 
+                    title = "Graphs showing Malignant Cancer"
+                > 
+            </div>
+
+            <div class = "column">
+                <p id = "desc">
+                    This is a graph showing malignant cancer.....
+                </p>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class = "column">
+                <img 
+                    src = "{{ url_2 }}" 
+                    alt = "Chart" 
+                    height = "auto" 
+                    width = "100%" 
+                    title = "Graphs showing Benign Cancer"
+                > 
+            </div>
+
+            <div class = "column">
+                <p id = "desc">
+                    This is a graph showing benign cancer.....
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

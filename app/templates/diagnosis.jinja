@@ -1,0 +1,39 @@
+{% extends 'base.jinja' %}
+
+{% block content %}
+
+    <div id = "container"> 
+        <h1> {{ title }} </h1>
+
+        <hr>
+
+        <div class = "formContainer"> 
+            <form action = "" method = "POST">
+                {{ form.hidden_tag() }}
+
+                    {% for field in form %}
+
+                        {% if (field.type != 'CSRFTokenField') 
+                            and ("Submit" not in field.type) 
+                            and ("Select" not in field.type) %}
+                            
+                                    <p id = "fields">
+                                        {{ field.label(id = "label") }}
+                                        {{ field(id = "field", size = 32) }}
+                                    </p>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                <div class = "bottom">
+                    {{ form.diagnosis.label }}
+                    {{ form.diagnosis }}
+                </div>
+
+                    {{ form.submit(class = "btn btn-primary btn-sm") }}
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
