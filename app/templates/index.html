@@ -18,10 +18,11 @@
  
     <ul class="navbar">  
         
-        <li class="nav-label"><a  href="{{ url_for('index') }}#about">About</a></li>
-        <li class="nav-label"><a  href="{{ url_for('index') }}#findings">Findings</a></li>
-        <li class="nav-label"><a  href="{{ url_for('index') }}#results">Results</a></li>
-        <li class="nav-label"><a  href="{{ url_for('diagnose') }}">Diagnosis</a></li>
+      <li class="nav-label"><a  href="{{ url_for('index') }}">Home</a></li>
+      <li class="nav-label"><a  href="#about">About</a></li>
+      <li class="nav-label"><a  href="#findings">Findings</a></li>
+      <li class="nav-label"><a  href="#results">Results</a></li>
+       <li class="nav-label"><a  href="{{ url_for('diagnose') }}">Diagnosis</a></li>
 
         {% if current_user.is_anonymous %}
           <li class="nav-label"><a  href="{{ url_for('login') }}">Login</a></li>
@@ -230,13 +231,17 @@
     <div class="quote-footer">
       <h2>Prevention is better than cure.</h2>
     </div>
-    <div class="links">
-      <a class="nav-link" href="#about">About</a>
+     <div class="links">
+      <a  href="{{ url_for('index') }}">Home</a></li>
       <span>&#183;</span>
-      <a class="nav-link" href="#findings">Findings</a>
-      <span>&#183;</span>
-      <a class="nav-link" href="#results">Results</a>
-    </div>
+        <a class="nav-link" href="about">About</a>
+        <span>&#183;</span>
+        <a class="nav-link" href="findings">Findings</a>
+        <span>&#183;</span>
+        <a class="nav-link" href="results">Results</a>
+         <span>&#183;</span>
+        <a  href="{{ url_for('diagnose') }}">Diagnosis</a>
+      </div>
     <div class="row">
       <div class="copyright">
         © 2021 Team Imposter

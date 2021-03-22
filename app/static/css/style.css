@@ -219,28 +219,20 @@ footer{
   background: #f3f2f2;
 }
 
+
 label {
-  font-size: 12.5px;
   color: #000;
-  opacity: 0.8;
-  font-weight: 400;
+  font-size: 17px;
+  font-weight: 700;
 }
 form {
   padding: 40px 30px;
   background: #fefefe;
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding-bottom: 20px;
 }
-form h4 {
-  margin-bottom: 20px;
-  color: rgba(0, 0, 0, .5);
-}
-form h4 span {
-  color: rgba(0, 0, 0, 1);
-  font-weight: 700;
-}
+
 form p {
   line-height: 155%;
   margin-bottom: 5px;
@@ -293,7 +285,7 @@ input {
   padding: 20px 0px;
   height: 56px;
   border: none;
-  border-bottom: solid 1px rgba(0, 0, 0, .1);
+  border-bottom: solid 1px rgba(64, 39, 63);
   background: #fff;
   min-width: 280px;
   box-sizing: border-box;
@@ -303,9 +295,9 @@ input {
   -webkit-appearance: none;
 }
 input:focus {
-  border-bottom: solid 1px #b69de6;
+  border-bottom: solid 1px #f10dcb;
   outline: 0;
-  box-shadow: 0 2px 6px -8px rgba(182, 157, 230, .45);
+  box-shadow: 0 2px 6px -8px rgba(213, 17, 219, 0.45);
 }
 .floating-label {
   position: relative;
