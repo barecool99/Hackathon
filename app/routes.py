@@ -16,7 +16,7 @@ from app.parse import GenerateGraphs, MachineLearning
 @app.route('/')
 @app.route('/index')
 def index():
-    #GenerateGraphs.graphs() # Generates graph
+    GenerateGraphs.graphs() # Generates graph
 
 
     # 'graph1' is malignant / 'graph2' is benign.
@@ -25,10 +25,10 @@ def index():
     url_graph2 = 'static/images/graph2.png'
 
 
-    return render_template('index.jinja', title = "Hackathon", url_1 = url_graph1, url_2 = url_graph2)
+    return render_template('index.index', title = "Hackathon", url_1 = url_graph1, url_2 = url_graph2)
 
 
-@app.route('/Diagnosis', methods = ['GET', 'POST'])
+@app.route('/diagnosis', methods = ['GET', 'POST'])
 def diagnose():
     form = InputDiagnosisData()
 

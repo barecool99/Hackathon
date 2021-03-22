@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Team Imposter</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script> 
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/adapters/standalone-framework.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<link href = "{{ url_for('static', filename='css/style.css') }}" type = "text/css" rel = "stylesheet"/>
+</head>
+<body>
+ 
+    <ul class="navbar">  
+        
+        <li class="nav-label"><a  href="#about">About</a></li>
+        <li class="nav-label"><a  href="#findings">Findings</a></li>
+        <li class="nav-label"><a  href="#results">Results</a></li>
+        <li class="nav-label"><a  href="{{ url_for('diagnose') }}">Diagnosis</a></li>
+      </ul>
+
+      <div class="header">
+        <p>Preventing Breast Cancer</p>
+      </div>
+
+      
+
+      <div class="about-us" id="about">
+       
+<div class="row">
+    <div class="col-4">
+        <h2 class="section-title"> About</h2>
+        <p class="section-sub"> Learn about our breast cancer prevetion website, how our algorithm shows whether the cancer is Benin or Malignant from out dataset and how we got the data and the knowledge.</p>
+        </div>
+    <div class="col">
+      <img class="about-img shadow-sm" src="{{ url_for('static', filename = 'images/ribbons1.jpg') }}" alt="Ribbon" style="width:100%">
+      <p>This website and the algorithm will help decide whether the cancer is Benin or Malignant. Benin meaning non-cancerous and Malignant is cancerous.</p>
+    </div>
+    <div class="col">
+      <img class="about-img shadow-sm" src="{{ url_for('static', filename = 'images/flower.jpg') }}" alt="Flower" style="width:100%">
+      <p>Our algorithm looks at a dataset of cancer records with symptoms and our ML algo classifies whether the cancer is Benin or Malignant </p>
+    </div>
+    <div class="col">
+      <img class="about-img shadow-sm" src="{{ url_for('static', filename = 'images/ribbon2.jpg') }}" alt="Ribbon" style="width:100%">
+      <p>Our dataset is from Kaggle which allows users to find, publish and build datasets. Our dataset is from Breast Cancer Wisconsin. </p>
+    </div>
+  </div>
+      </div>
+    
+      <div class="key-findings" id="findings" >
+        <div class="row">
+          <h2 class="section-title-findings"> Key Findings</h2>
+          <p class="section-sub">hover over the cards below to see highlights of the most important data from the dataset</p>
+        
+          <div class="col">
+            <div class="flip">
+              <div class="front"style="background-image: url({{ url_for('static',filename = '/images/board.jpg')}});">
+                 <h1 class="text-shadow front-text"></hi>
+              </div>
+              <div class="back">
+                 <h2>92.67%</h2>
+                 <p>Gave a Benign result</p>
+              </div>
+          </div>
+          </div>
+
+          <div class="col">
+            <div class="flip">
+              <div class="front" style="background-image: url({{ url_for('static',filename = '/images/hearts.jpg')}});">
+                 <h1 class="text-shadow front-text"></hi>
+              </div>
+              <div class="back">
+                 <h2>29</h2>
+                 <p>Different cancer cell features that determine the type of cancer</p>
+              </div>
+          </div>
+          </div>
+
+     <div class="col">
+      <div class="flip">
+        <div class="front" style="background-image: url({{ url_for('static',filename = '/images/flowers4.jpg')}});">
+           <h1 class="text-shadow front-text"></hi>
+        </div>
+        <div class="back">
+           <h2>80%</h2>
+           <p>of breast cancers are found in women over the age of 50. </p>
+        </div>
+    </div>
+          </div>
+
+          <div class="col">
+            <div class="flip">
+              <div class="front"style="background-image: url({{ url_for('static',filename = '/images/flower2.jpg')}});">
+                 <h1 class="text-shadow front-text"></hi>
+              </div>
+              <div class="back">
+                 <h2>23%</h2>
+                 <p>of cases are preventable</p>
+              </div>
+          </div>
+          </div>
+</div>
+      </div>
+
+      <div class="charts">
+        <div class="row">
+          <h2 class="section-title-findings"> Charts</h2>
+          <p class="section-sub">Find out more about Breast Cancer findings below:</p>
+         <div class="row">
+          <div class="col">
+            <div id="graph1" style="min-width:310px; height:500px; margin:0 auto;"></div>
+        <pre id="csv" style="display:none">
+          Categories,20-29,30-39,40-49,50-59,60-69,70-79,80+
+          20-29,0.3
+          30-39,5.9
+          40-49,24.7
+          50-59,29.1
+          60-69,20.3
+          70-79,13.9
+          80+,5.9
+        </pre>
+          </div>
+          <div class="col">
+            <div id="graph2" style="min-width:310px; height:500px; margin:0 auto;"></div>
+        <pre id="csv1" style="display:none">
+          Categories,White,Black, Asian,Hispanic,American Indian
+          White,130.5
+          Black,124.0
+          Asian,100.1
+          Hispanic,97.2
+          American Indian,79.5
+        </pre>
+          </div>
+          <div class="col">
+            <div id="graph3" style="min-width:310px; height:590px; margin:0 auto;"></div>
+        <pre id="csv3" style="display:none">
+        Categories
+        Familial Breast Cancer,25
+        Hereditary Breast Cancer,10
+        Sporadic Breast Cancer,65
+     </pre>
+          </div>
+        </div>
+      </div>
+      </div>
+
+        
+       
+
+        <div class="quote-section">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+              <div id="London" class="tabcontent">
+                <p>"You never know how strong you are until being strong is the only choice you have"</p>
+              </div>
+              <div id="Paris" class="tabcontent">
+                <p>"I do not feel like any less of a woman. I feel empowered that i made a strong choice that in no way diminishes my femininity."</p>
+              </div>
+              <div id="Tokyo" class="tabcontent">
+                <p>"I am stronger than I thought I was. My favorite phrase has been  'This too shall pass.' I now understand it really well."</p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="col-2"></div>
+          </div>
+
+
+          <div class="row">
+           
+              <div class="col-12">
+                <div class="row tab">
+                  <div class="col">
+                    <button class="tablinks" onmouseover="openCity(event, 'London')">Cayla Mills</button>
+                  </div>
+                  <div class="col">
+                    <button class="tablinks" onmouseover="openCity(event, 'Paris')">Angelina Jolie</button>
+                  </div>
+                  <div class="col">
+                    <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Robin Roberts</button>
+                  </div>
+                </div>
+              </div>
+          
+          </div>
+        </div>
+      
+        <div class="results" id="results">
+          <div class="row">
+          <h2 class="section-title-findings"> Results</h2>
+          <p class="section-sub">Below are the results from the algorithm that are shown in visual diagrams. </p>
+
+        
+          <h3>Graphs showing Malignant Cancer</h3>
+          <img 
+                    src = "{{ url_1 }}" 
+                    alt = "Chart" 
+                    height = "auto" 
+                    width = "100%" 
+                    title = "Graphs showing Malignant Cancer"
+                >  
+           <h3>Graphs showing Benign Cancer</h3>     
+          <img 
+          src = "{{ url_2 }}" 
+          alt = "Chart" 
+          height = "auto" 
+          width = "100%" 
+          title = "Graphs showing Benign Cancer"
+      > 
+        </div>
+        </div>
+
+<div class="footer-section">
+  <footer>
+    <div class="quote-footer">
+      <h2>Prevention is better than cure.</h2>
+    </div>
+    <div class="links">
+      <a class="nav-link" href="#about">About</a>
+      <span>&#183;</span>
+      <a class="nav-link" href="#findings">Findings</a>
+      <span>&#183;</span>
+      <a class="nav-link" href="#results">Results</a>
+    </div>
+    <div class="row">
+      <div class="copyright">
+        © 2021 Team Imposter
+      </div>
+    </div>
+  </footer>
+</div>
+   
+       <script src="{{ url_for('static', filename='index.js') }}"></script>
+       <script src="{{ url_for('static', filename='highcharts.js') }}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
+      
+</body>
+</html>
