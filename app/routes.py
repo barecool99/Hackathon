@@ -1,6 +1,7 @@
 from flask import render_template, request
 from flask.helpers import flash, url_for
 from flask_login import current_user, login_user, logout_user, login_required
+import flask_login
 
 import matplotlib
 from werkzeug.utils import redirect
@@ -32,6 +33,7 @@ def index():
 
 
 @app.route('/diagnosis', methods = ['GET', 'POST'])
+@login_required
 def diagnose():
     form = InputDiagnosisData()
 
